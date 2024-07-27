@@ -1,4 +1,4 @@
-self.color =import random
+import random
 import chess
 import chess.engine
 import sys
@@ -248,7 +248,7 @@ class Queen:
         return self.rook.valid_moves(position, board) + self.bishop.valid_moves(position, board)
 
     def symbol(self):
-        return 'Q' if = 'White' else 'q'
+        return 'Q' if self.color == 'White' else 'q'
 
 class Knight:
     def __init__(self, color):
@@ -435,7 +435,7 @@ def randomize_opening_moves(board, num_moves=2):
         ["e2e4", "c7c5", "d2d4", "c5d4"],  # Sicilian Defense, Open
         ["e2e4", "e7e5", "g1f3", "g8c6"],  # Four Knights Game
         ["e2e4", "e7e5", "d2d4", "e5d4"],  # Scotch Game
-        ["c2c4", "e7e5", "g1f3", "e5e4"],  # English Opening, Reversed Sicilian
+        ["c2c4", "e7e", "g1f3", "e5e4"],  # English Opening, Reversed Sicilian
         ["d2d4", "f7f5", "g1f3", "g8f6"],  # Dutch Defense
         ["e2e4", "c7c6", "d2d4", "d7d5"],  # Caro-Kann Defense
         ["e2e4", "e7e5", "f2f4", "e5f4"],  # King's Gambit Accepted
@@ -553,7 +553,7 @@ def play_game(thinking_time=10.0, watch=False, seed=None, stockfish_depth=None):
     if board.is_checkmate():
         if board.turn == chess.WHITE:
             print("Checkmate! Black (12D AI) wins!")
-else:
+        else:
             print("Checkmate! White (Stockfish) wins!" if watch else "Checkmate! White (Player) wins!")
     elif board.is_stalemate():
         print("Stalemate!")
@@ -575,7 +575,7 @@ def main(args):
         play_game(thinking_time=args.thinking_time, watch=False)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="12D Chess AI")
+    parser = argparse.ArgumentParser(description="12D Chess Engine")
     parser.add_argument('--watch', action='store_true', help="Watch 12D AI play against Stockfish")
     parser.add_argument('--thinking_time', type=float, default=1.0, help="Thinking time for Stockfish (in seconds)")
     parser.add_argument('--num_games', type=int, default=1, help="Number of games to play")
